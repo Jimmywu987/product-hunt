@@ -1,0 +1,28 @@
+.hamburger_box {
+    height: 14px;
+    width: 25px;
+    position: relative;
+}
+
+.hamburger_middle {
+    margin: 5px 0;
+}
+.hamburger_bottom, .hamburger_middle, .hamburger_top {
+    border-radius: 2px;
+    height: 2px;
+    background: #4b587c;
+    transition: all .5s ease;
+}
+
+.hamburger_box_animate .hamburger_top {
+  -webkit-transform: rotate(405deg) translateX(2px) translateY(7px);
+  transform: rotate(405deg) translateX(2px) translateY(7px);
+}
+.hamburger_box_animate .hamburger_middle {
+  opacity: 0;
+}
+
+.hamburger_box_animate .hamburger_bottom {
+  -webkit-transform: rotate(-45deg) translateX(2px) translateY(-8px);
+  transform: rotate(-45deg) translateX(2px) translateY(-8px);
+}

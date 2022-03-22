@@ -1,0 +1,23 @@
+query { posts 
+            { edges 
+                { node 
+                    { id,
+                     name,
+                     createdAt,
+                     description,
+                     featuredAt,
+                     tagline,
+                     url,
+                     user {
+                        id,
+                        createdAt,
+                        coverImage,
+                        headline,
+                        name,
+                        profileImage,
+                        username
+                    }
+                } 
+            } 
+        }
+}
