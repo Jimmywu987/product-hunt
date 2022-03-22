@@ -19,7 +19,6 @@ const client = new ApolloClient({
 });
 function MyApp({ Component, pageProps }) {
   
-  console.log("PH_ACCESS_TOKEN",PH_ACCESS_TOKEN)
   return <ApolloProvider client={client}><Component {...pageProps} /></ApolloProvider>
 }
 
