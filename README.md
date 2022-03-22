@@ -18,7 +18,22 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 
 The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
+
+
+## Get Product Hunt API Token
+
+Go to https://api.producthunt.com/v2/oauth/applications to get API Key, APi Secret And Token
+
+Then create a .env.local and put these key and secret and token into this .env.local respectively.
+
+
+
+
+
 ## Learn More
+
+
+
 
 To learn more about Next.js, take a look at the following resources:
 

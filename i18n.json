@@ -1,0 +1,18 @@
+{
+  "localeDetection": false,
+  "locales": ["zh-HK", "en"],
+  "defaultLocale": "zh-HK",
+  "domains": [
+    {
+        "domain": "http://localhost:3000/",
+        "defaultLocale": "zh-HK"
+    },
+    {
+      "domain": "http://localhost:3000/en",
+      "defaultLocale": "en"
+    }
+  ],
+  "pages": {
+    "*": ["common"]
+  }
+}
