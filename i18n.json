@@ -1,14 +1,14 @@
 {
   "localeDetection": false,
   "locales": ["zh-HK", "en"],
-  "defaultLocale": "zh-HK",
+  "defaultLocale": "en",
   "domains": [
     {
-        "domain": "http://localhost:3000/",
+        "domain": "http://localhost:3000/zh-HK",
         "defaultLocale": "zh-HK"
     },
     {
-      "domain": "http://localhost:3000/en",
+      "domain": "http://localhost:3000/",
       "defaultLocale": "en"
     }
   ],

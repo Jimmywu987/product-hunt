@@ -5,5 +5,9 @@
       "description": "Product Hunt Post 瀏覽搜索好幫手，簡單易用，快速找尋你心中的貼子。"
     }
   },
+  "homepage":{
+    "noPostMessage":"暫時沒有貼子，請重新刷新頁面。",
+    "filterTitle": "題目過濾"
+  },
   "Current_Language":"中文(繁體)"
 }

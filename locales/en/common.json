@@ -5,6 +5,10 @@
             "description": "Product Hunt Post Searching Kit, where you can find all types of Product Hunt Posts!"
         }
     },
+    "homepage":{
+        "noPostMessage":"No Post Available at the moment, Please refresh the page.",
+        "filterTitle": "Filter Topics"
+    },
     "Current_Language":"English"
   
 }

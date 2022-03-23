@@ -2,7 +2,7 @@
 
 const Footer = ()=>{
     return (
-      <footer>
+      <footer className="bg-theme-red h-24">
         
       </footer>
     )

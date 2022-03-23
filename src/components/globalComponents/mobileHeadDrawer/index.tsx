@@ -12,7 +12,7 @@ const StyledAccordion = styled(Accordion)<AccordionProps>(()=>({
 }))
 
 
-function MobileHeadDrawer() {
+const MobileHeadDrawer = () => {
     const { t, lang } = useTranslation('common');
     const router = useRouter();
     const { pathname, asPath, query } = router
@@ -21,7 +21,7 @@ function MobileHeadDrawer() {
         router.push({ pathname, query }, asPath, { locale: language })
       };
   return (
-    <Box sx={{ width: 230 }} role="presentation" >
+    <Box sx={{ width: 230 }} role="presentation">
         <List>
             <StyledAccordion >
                 <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">

@@ -21,7 +21,7 @@ const StyledDrawer = styled(SwipeableDrawer)<SwipeableDrawerProps>(()=>({
 
 const Header = ()=>{
 
-    const { t } = useTranslation('common');
+    const { t, lang } = useTranslation('common');
     const router = useRouter();
     const { pathname, asPath, query } = router
     const [productListHover, setProductListHover] = useState<boolean>(false)
@@ -42,7 +42,7 @@ const Header = ()=>{
 
     return (
       <header className="shadow w-full ">
-        <div className="container px-0.5 md:px-4 flex justify-between items-center h-14 mx-auto">
+        <div className="container px-0.5 lg:px-4 flex justify-between items-center h-14 mx-auto">
 
           <Link href="/" passHref>
             <a className="text-theme-red font-bold text-xl flex items-center z-[1201]">
@@ -51,7 +51,7 @@ const Header = ()=>{
             </a>
           </Link>
 
-          <div className="hidden md:flex relative">
+          <div className="hidden lg:flex relative">
             <Button onMouseEnter={() => setProductListHover(true)}
                     onMouseLeave={() => setProductListHover(false)} className="mx-2 justify-end " startIcon={<PublicIcon className="text-theme-red"/>}>
               <div className="text-sm leading-normal text-center text-theme-red ">
@@ -60,17 +60,17 @@ const Header = ()=>{
             </Button>
             <div onMouseLeave={()=>setProductListHover(false)} onMouseEnter={()=>setProductListHover(true)} className={`transition duration-800 ease-in-out transform ${ !productListHover && 'invisible translate-y-4 opacity-0 '} absolute top-8  w-32 bg-white left-0 shadow-md rounded-lg`}>
               <div className="w-full h-full p-0.5">
-                <div className="flex items-center justify-between w-full px-3 py-2 rounded cursor-pointer text-blueGray-600 text-md  hover:text-blueGray-800" onClick={()=>onClickLanguageHandler("zh-HK")}>
-                  中文(繁體)
-                </div>
-                <div className="flex items-center justify-between w-full px-3 py-2 rounded cursor-pointer text-blueGray-400 text-md  hover:text-blueGray-800" onClick={()=>onClickLanguageHandler("en")}>
+              <div className={`flex items-center justify-between w-full px-3 py-2 rounded cursor-pointer ${lang === 'en' ? 'text-blueGray-600': 'text-blueGray-400'} text-md  hover:text-blueGray-800`} onClick={()=>onClickLanguageHandler("en")}>
                   English
+                </div>
+                <div className={`flex items-center justify-between w-full px-3 py-2 rounded cursor-pointer ${lang === 'zh-HK' ? 'text-blueGray-600': 'text-blueGray-400'} text-blueGray-600 text-md  hover:text-blueGray-800`} onClick={()=>onClickLanguageHandler("zh-HK")}>
+                  中文(繁體)
                 </div>
               </div>
             </div>
           </div>
 
-          <div className={`${styles.hamburger_box} block md:hidden cursor-pointer z-[1201] ${drawerState && styles.hamburger_box_animate}`} onClick={toggleDrawer()}>
+          <div className={`${styles.hamburger_box} block lg:hidden cursor-pointer z-[1201] ${drawerState && styles.hamburger_box_animate}`} onClick={toggleDrawer()}>
             <div className={styles.hamburger_top}></div>
             <div className={styles.hamburger_middle}></div>
             <div className={styles.hamburger_bottom}></div>

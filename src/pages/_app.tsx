@@ -5,6 +5,7 @@ import {
   ApolloProvider,
 } from "@apollo/client";
 import Layout from "../components/globalComponents/layout"
+import { RecoilRoot } from 'recoil';
 
 const {NEXT_PUBLIC_PH_ACCESS_TOKEN} = process.env
 const client = new ApolloClient({
@@ -20,12 +21,14 @@ const client = new ApolloClient({
 
 
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps })=>{
  
   return (<ApolloProvider client={client}>
+            <RecoilRoot>
               <Layout>
                 <Component {...pageProps} />
               </Layout>
+            </RecoilRoot>
           </ApolloProvider>)
 }
 

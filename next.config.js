@@ -21,6 +21,9 @@ const nextConfig = {
   webpackDevMiddleware: (config) => {
     return config;
   },
+  images: {
+    domains:["ph-files.imgix.net", "ph-avatars.imgix.net"]
+  }
 }
 
 module.exports = nextTranslate(nextConfig)
