@@ -42,7 +42,7 @@ function PostDetailSection({post,topicsList }:{post:PostDetail, topicsList: stri
       {post.url && <a href={post.url} target="_blank" className="text-sky-700 font-bold" rel="noreferrer">{t("postDetailPage.linkText")}</a>}
     </div>
     {post.user && 
-      <div className="flex bg-white rounded-lg border lg:ml-2 shadow py-2 px-3 max-w-[340px]" onClick={()=>
+      <div className="flex bg-white rounded-lg border lg:ml-2 shadow py-2 px-3 w-[340px]" onClick={()=>
           dispatch({
               type: "@@USER_DETAIL_SELECTED",
               payload: post,
