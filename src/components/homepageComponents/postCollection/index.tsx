@@ -1,8 +1,8 @@
 import React from 'react'
 import EachPostGrid from '../../postsComponents/eachPostGrid';
-import useTranslation from 'next-translate/useTranslation';
+import { PostDetail } from '../../../util/interfaces/postDetailInterface';
 
-const PostCollection = ({posts,topicFilter})=>{
+const PostCollection = ({posts,topicFilter}:{posts:PostDetail[], topicFilter:string[]})=>{
 
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 lg:px-3">

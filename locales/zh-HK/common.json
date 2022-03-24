@@ -6,8 +6,18 @@
     }
   },
   "homepage":{
+    "backButton":"返回",
     "noPostMessage":"暫時沒有貼子，請重新刷新頁面。",
     "filterTitle": "題目過濾"
+  },
+  "postDetailPage":{
+    "relatedPostTitle":"相關貼子",
+    "otherPostTitle":"其他貼子",
+    "linkText": "了解更多"
+  },
+  "404":{
+    "title":"找不到相關貼子，",
+    "linkBack":"按此返回主頁"
   },
   "Current_Language":"中文(繁體)"
 }

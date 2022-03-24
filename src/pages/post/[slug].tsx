@@ -1,21 +1,29 @@
 import { useEffect } from 'react'
-import { useRouter } from "next/router";
 import { ApolloClient, gql, InMemoryCache } from '@apollo/client';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { selectedPostDetailState } from '../../atoms/selectedPostDetail';
-import { storePostsState } from '../../atoms/storePosts';
 import { GetServerSideProps } from 'next';
-import RelatedPostsSection from '../../components/postDetailPageComponents/relatedPosts';
+import Link from "next/link";
+import RelatedTopicsSection from '../../components/postDetailPageComponents/relatedTopicsSection';
+import { useDispatch, useSelector } from 'react-redux';
+import { IRootState } from '../../store';
+import PostDetailSection from '../../components/postDetailPageComponents/postDetail';
+import mockData from "../../util/mockData/pageDetailData.json"
+import useTranslation from 'next-translate/useTranslation';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import { PostDetail } from '../../util/interfaces/postDetailInterface';
+
+
 
 
 const PostDetailPage = ({post}) => {
-    console.log("post123",post)
-    const router = useRouter()
-    const postInfo = useRecoilValue(selectedPostDetailState)
-    const [posts, setPosts] = useRecoilState(storePostsState)
+    const dispatch = useDispatch();
+    const { t } = useTranslation('common');
+
+  const postInfo = useSelector((state: IRootState) => state.selectedPostDetailReducer.postDetail)
+  const posts = useSelector((state: IRootState) => state.storedPostsReducer.posts)
+
+
     useEffect(()=>{
         if(posts.length === 0){
-            console.log("checking")
             fetchPostsFromProductHunt()
         }
     },[])
@@ -23,21 +31,25 @@ const PostDetailPage = ({post}) => {
     const fetchPostsFromProductHunt = async () => {
         const resultJSON = await fetch('/api/post-fetching')
         if(resultJSON.status === 200){
-            const {posts} = await resultJSON.json()
-            setPosts(posts)
+            const {posts, topics} = await resultJSON.json()
+            dispatch({
+              type: "@@STORED_POSTS",
+              payload: {posts,topics}
+            });
         }
     }
-    console.log("post",post)
-    console.log("postInfo",postInfo)
+    const displayPost:PostDetail = postInfo.name !== "" ? postInfo : post
+    const topicsList:string[] = displayPost.topics ? displayPost.topics.edges.map(topic => topic.node.name) : []
+    const topicFilterPosts = posts.filter((post)=> post.topics.edges.some((topic)=>topicsList.includes(topic.node.name)) && post.name !== displayPost.name)
+
   return (
-    <div className="container mx-auto my-14 flex">
-        <div className="w-full md:w-7/12"></div>
-        <div className="w-full md:w-5/12">
-            <RelatedPostsSection
-                relatedTopics={postInfo.name ? postInfo.topics.edges : post.name? post.topics.edges : []}
-                posts={posts}
-                selectedPostName={postInfo.name ? postInfo.name : post.name? post.name: ""}
-            />
+    <div className="container mx-auto px-1 lg:px-4 my-14 flex flex-col lg:flex-row lg:justify-between">
+        <div className="w-full lg:w-7/12 lg:mr-3 mb-6 lg:mb-0">
+          <Link href="/" passHref><a className="inline-flex items-center text-blueGray-400 mb-4"><ArrowBackIosIcon className="text-sm " />{t("homepage.backButton")}</a></Link>
+          <PostDetailSection post={post} topicsList={topicsList} />
+        </div>
+        <div className="w-full lg:w-5/12">
+          <RelatedTopicsSection displayPost={displayPost} posts={posts} topicFilterPosts={topicFilterPosts}/>
         </div>
     </div>
   )
@@ -45,39 +57,6 @@ const PostDetailPage = ({post}) => {
 
 export default PostDetailPage
 
-const ob = {
-    "post": {
-      "name": "RADAAR",
-      "createdAt": "2022-03-23T07:01:00Z",
-      "tagline": "Not just another scheduling tool",
-      "topics": {
-        "edges": [
-          {
-            "node": {
-              "name": "Social Media Tools"
-            }
-          },
-          {
-            "node": {
-              "name": "Social media marketing"
-            }
-          }
-        ]
-      },
-      "thumbnail": {
-        "url": "https://ph-files.imgix.net/ab60213a-f638-4d9d-a45a-8e76790d1503.gif?auto=format"
-      },
-      "user": {
-        "id": "3117947",
-        "name": "Mustafa Ercan Zırh",
-        "profileImage": "https://ph-avatars.imgix.net/3117947/862e163b-1766-4f19-b00f-6a23065aa4b6?auto=format&fit=crop&crop=faces&w=original&h=original",
-        "headline": "Founder & CEO, RADAAR | Hiring 🚀"
-      },
-      "description": "Managing multiple social media profiles can get overwhelming, but it doesn't have to be that way. Now you can simplify your social media management with RADAAR. It helps everyone at every step, from scheduling and publishing posts to analyzing their efforts.",
-      "url": "https://www.producthunt.com/posts/radaar?utm_campaign=producthunt-api&utm_medium=api-v2&utm_source=Application%3A+PH+API+Explorer+%28ID%3A+9162%29",
-      "reviewsRating": 4.91
-    }
-  }
 export const getServerSideProps: GetServerSideProps = async ({params})=>{
 
     const client = new ApolloClient({
@@ -90,61 +69,68 @@ export const getServerSideProps: GetServerSideProps = async ({params})=>{
           "Authorization": `Bearer ${process.env.NEXT_PUBLIC_PH_ACCESS_TOKEN}`
         }
     });
-      try{
-        // const {data, error} = await client.query({
-        //   query: gql`
-        //     query   {
-        //            post(slug: "${params.slug}"){
-        //               name,
-        //               createdAt,
-        //               tagline,
-        //               topics {
-        //                 edges {
-        //                   node {
-        //                     name,
-        //                   }
-        //                 }
-        //               },
-        //               thumbnail {
-        //                 url
-        //               },
-        //               user{
-        //                 id,
-        //                 name,
-        //                 profileImage,
-        //                 headline
-        //               }
-        //              description,
-        //              url,
-        //              reviewsRating,
-        //            }
-        //          }
-        //   `
-        // })
+    try{
 
-
-        if(true){
     
-          return {
-            props: {
-              post: ob.post
-            }
-          }
-        }
+    const {data, error} = await client.query({
+      query: gql`
+        query   {
+               post(slug: "${params.slug}"){
+                  name,
+                  createdAt,
+                  tagline,
+                  topics {
+                    edges {
+                      node {
+                        name,
+                      }
+                    }
+                  },
+                  thumbnail {
+                    url
+                  },
+                  user{
+                    id,
+                    name,
+                    profileImage,
+                    headline
+                  }
+                 description,
+                 url,
+                 reviewsRating,
+               }
+             }
+      `
+    })
+    console.log("post detail data",data)
 
-        // return {
-        //   props: {
-        //     post: data.post,
-        //   }
-        // }
-    
-      }catch(err){
-        if(err){
-          return {
-            props: {
-              post: {},
-            }
+    if(!data || error){
+     if(mockData[`${params.slug}`]){
+       return {
+         props: {
+           post:  mockData[`${params.slug}`].data.post,
+         }
+       }
+     }
+      return {
+         notFound: true,
+       };
+    }
+     return {
+       props: {
+         post: data.post,
+       }
+     }
+    }catch(err){
+      if(mockData[`${params.slug}`]){
+        return {
+          props: {
+            post:  mockData[`${params.slug}`].data.post,
           }
         }
       }
+       return {
+          notFound: true,
+        };
+    }
 }

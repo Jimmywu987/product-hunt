@@ -2,10 +2,7 @@ import HeadHTML from "../headHtml";
 import Header from "../header";
 import Footer from "../footer";
 
-
-
 const Layout = ({ children })=>{
-
   return (
     <>
       <HeadHTML />
@@ -17,3 +14,7 @@ const Layout = ({ children })=>{
 }
 
 export default Layout;
+
+
+
+

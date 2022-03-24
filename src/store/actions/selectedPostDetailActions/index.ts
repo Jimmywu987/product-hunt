@@ -1,0 +1,3 @@
+
+export const POST_DETAIL_SELECTED = "@@POST_DETAIL_SELECTED";
+

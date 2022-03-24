@@ -4,8 +4,8 @@ import useTranslation from 'next-translate/useTranslation'
 import React from 'react'
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-const EachFilterOption = ({topic,setTopicFilter,topicFilter}) => {
-    let isAlreadySelected = topicFilter.includes(topic)
+const EachFilterOption = ({topic,setTopicFilter,topicFilter}:{topic:string,setTopicFilter,topicFilter:string[]}) => {
+    const isAlreadySelected:boolean = topicFilter.includes(topic)
     const toSelectThisTopic = () => {
         setTopicFilter(topicArr => {
             let newTopicArr = [...topicArr]
@@ -41,7 +41,7 @@ const EachFilterOption = ({topic,setTopicFilter,topicFilter}) => {
 }
 
 
-const TopicFilter = ({topics,setTopicFilter,topicFilter})=>{
+const TopicFilter = ({topics,setTopicFilter,topicFilter}:{topics:string[],setTopicFilter,topicFilter:string[]})=>{
 const { t } = useTranslation('common');
 
   return (

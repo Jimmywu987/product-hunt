@@ -1,7 +1,6 @@
 import { Accordion, AccordionDetails, AccordionSummary, Box, List, ListItemText,AccordionProps } from '@mui/material'
 import React from 'react'
 import {  styled } from '@mui/material/styles';
-
 import PublicIcon from '@mui/icons-material/Public';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from "next/router";
