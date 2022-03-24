@@ -21,11 +21,11 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         const topics: string[] = []
          try{
 
-         
+        // here the post fetching is for suggesting the related posts, therefore, 10 should be enough instead of 20
           const {data, error} = await client.query({
               query: gql`
               query {
-                  posts (first:20) {
+                  posts (first:10) {
                     edges {
                       node {
                         slug,
@@ -60,7 +60,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         
         if(!data || error){
         //  Here to get array of string topics for user to filter through the post conveniently
-          const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+          const allTopicsWithinArray:string[][] = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
           allTopicsWithinArray.map((each)=>{
             each.map(topic=>{
               if(!topics.includes(topic)){
@@ -73,7 +73,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         }
 
         //  Here to get array of string topics for user to filter through the post conveniently
-          const allTopicsWithinArray = data.posts.edges.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+          const allTopicsWithinArray:string[][] = data.posts.edges.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
           allTopicsWithinArray.map((each)=>{
             each.map(topic=>{
               if(!topics.includes(topic)){

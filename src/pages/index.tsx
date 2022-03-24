@@ -119,7 +119,7 @@ export  const getStaticProps: GetStaticProps = async ()=>{
 
     // If graphql failed to fetch due to the requested data over the limited that allowed, then mock data will be in used
     if(!data || error){
-      const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+      const allTopicsWithinArray:string[][] = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
       allTopicsWithinArray.map((each)=>{
         each.map(topic=>{
           if(!topics.includes(topic)){
@@ -140,7 +140,7 @@ export  const getStaticProps: GetStaticProps = async ()=>{
 
 
     //  Here to get array of string topics for user to filter through the post conveniently
-    const allTopicsWithinArray = data.posts.edges.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+    const allTopicsWithinArray:string[][] = data.posts.edges.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
     allTopicsWithinArray.map((each)=>{
       each.map(topic=>{
         if(!topics.includes(topic)){
@@ -161,7 +161,7 @@ export  const getStaticProps: GetStaticProps = async ()=>{
 
   }catch(err){
     // here using the mock data as well
-    const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+    const allTopicsWithinArray:string[][] = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
     allTopicsWithinArray.map((each)=>{
       each.map(topic=>{
         if(!topics.includes(topic)){
