@@ -11,20 +11,11 @@ const EachPostGrid = ({post}: {post:PostDetail})=>{
   return (
        <Link href={`/post/${post.slug}`} passHref>
         <a className="p-3 border border-blueGray-100 rounded-lg w-full shadow-md flex justify-between group cursor-pointer hover:bg-blueGray-50" onClick={()=> {
+            // turn the loading status to true 
             dispatch({
                 type: "@@LOADING_UPDATE",
                 payload: true,
-            })
-            dispatch({
-                type: "@@POST_DETAIL_SELECTED",
-                payload: post,
-            })
-            setTimeout(()=>{
-                dispatch({
-                    type: "@@LOADING_UPDATE",
-                    payload: false,
-                })    
-            },500)       
+            })      
                 }}>
             <div className="flex items-center">
                 <Image src={post.thumbnail.url} width={200} height={200} alt={`${post.name}-image`} className="object-contain "/>

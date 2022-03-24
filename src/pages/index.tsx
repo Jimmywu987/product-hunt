@@ -39,6 +39,7 @@ import mockData from "../util/mockData/homepageData.json"
   const toRefreshPage = () => {
       Router.reload();
   }
+  // if still no data is fetched (in the case of not using the mock data then goes here)
   if(posts.length === 0){
     return <div className="flex justify-center items-center text-2xl h-[80vh] cursor-pointer" onClick={toRefreshPage}>
       {t("homepage.noPostMessage")} :(
@@ -88,7 +89,7 @@ export  const getStaticProps: GetStaticProps = async ()=>{
     const {data, error} = await client.query({
       query: gql`
         query {
-            posts {
+            posts (first:20) {
               edges {
                 node {
                   slug,
@@ -117,7 +118,8 @@ export  const getStaticProps: GetStaticProps = async ()=>{
       }
       `
     })
-   console.log("data",data)
+
+    // If graphql failed to fetch due to the requested data over the limited that allowed, then mock data will be in used
     if(!data || error){
       const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
       allTopicsWithinArray.map((each)=>{
@@ -132,11 +134,14 @@ export  const getStaticProps: GetStaticProps = async ()=>{
           posts: mockData.map(post=>post.node),
           topics: topics
         },
-        revalidate: 60 * 20
+
+        // regenerate the page every 16 minutes, as my token limits my fetching every 15 minutes
+        revalidate: 60 * 16
       }
     }
+
+
     //  Here to get array of string topics for user to filter through the post conveniently
-    
     const allTopicsWithinArray = data.posts.edges.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
     allTopicsWithinArray.map((each)=>{
       each.map(topic=>{
@@ -151,10 +156,13 @@ export  const getStaticProps: GetStaticProps = async ()=>{
         posts: data.posts.edges.map(post=>post.node),
         topics: topics
       },
+
+        // regenerate the page every 16 minutes, as my token limits my fetching every 15 minutes
       revalidate: 60 * 20
     }
 
   }catch(err){
+    // here using the mock data as well
     const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
     allTopicsWithinArray.map((each)=>{
       each.map(topic=>{

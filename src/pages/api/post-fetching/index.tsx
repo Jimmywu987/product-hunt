@@ -25,7 +25,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
           const {data, error} = await client.query({
               query: gql`
               query {
-                  posts {
+                  posts (first:20) {
                     edges {
                       node {
                         slug,
@@ -54,7 +54,12 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
               }
                 `
           })
+
+        // If graphql failed to fetch due to the requested data over the limited that allowed, then mock data will be in used
+
+        
         if(!data || error){
+        //  Here to get array of string topics for user to filter through the post conveniently
           const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
           allTopicsWithinArray.map((each)=>{
             each.map(topic=>{
@@ -66,8 +71,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
           return res.status(200).json({ posts: mockData.map(post=>post.node), topics});
         
         }
+
         //  Here to get array of string topics for user to filter through the post conveniently
-    
           const allTopicsWithinArray = data.posts.edges.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
           allTopicsWithinArray.map((each)=>{
             each.map(topic=>{
@@ -79,7 +84,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
           return res.status(200).json({ posts: data.posts.edges.map(post=>post.node), topics});
       }catch(err){
 
-
+        //when error occurred, then mock data will be in used
         const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
         allTopicsWithinArray.map((each)=>{
           each.map(topic=>{
