@@ -5,6 +5,20 @@
             "description": "Product Hunt Post Searching Kit, where you can find all types of Product Hunt Posts!"
         }
     },
+    "homepage":{
+        "backButton":"Back",
+        "noPostMessage":"No Post Available at the moment, Please refresh the page.",
+        "filterTitle": "Filter Topics"
+    },
+    "postDetailPage":{
+        "relatedPostTitle":"Related Posts",
+        "otherPostTitle":"Other Posts",
+        "linkText": "Learn more"
+    },
+    "404":{
+        "title":"No Topic is found, ",
+        "linkBack":"Click here to return"
+      },
     "Current_Language":"English"
   
 }

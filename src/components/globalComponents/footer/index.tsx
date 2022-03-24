@@ -2,8 +2,8 @@
 
 const Footer = ()=>{
     return (
-      <footer>
-        
+      <footer className="bg-theme-red h-24 flex items-center justify-center text-white">
+        Code test
       </footer>
     )
   }

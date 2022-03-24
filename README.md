@@ -2,7 +2,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+
+Go to [Product Hunt Api](https://api.producthunt.com/v2/oauth/applications) to a Token (You need to register an account first, if you haven't)
+
+Then create an .env.local on the root of the project and put the token into .env.local.
+
+
+
+But if you want to get it run right always without going to get the token first, you can still try to run the below bash (for this the data is mocked instead of fetching an update data)
+
 
 ```bash
 npm run dev
@@ -12,38 +20,23 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Issues
 
 
+The type of token you get may limit the amounts of data you are allowed to fetch (the token I used, can only fetch 20 as maximum, thus I limit the data fetching to 20 only in order to get the similar ux that I hope use can get.)
 
-## Get Product Hunt API Token
 
-Go to https://api.producthunt.com/v2/oauth/applications to get API Key, APi Secret And Token
-
-Then create a .env.local and put these key and secret and token into this .env.local respectively.
+## Future Development
 
 
 
+I built the mobile drawer, header as well as setting up translation files, make it easier scaling up, such as adding more pages (About us, Contact us etc).
+
+I hope to build up a user detail page where clicking on the poster icon can get in.
+
+Also the usual register and login then user can create their own posts
 
 
-## Learn More
+if the posts can be fetched more than 20 post, then add a pagination on the homepage.
 
-
-
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
