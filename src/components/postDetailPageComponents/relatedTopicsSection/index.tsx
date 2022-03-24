@@ -2,7 +2,6 @@ import useTranslation from 'next-translate/useTranslation'
 import { useSelector } from 'react-redux';
 import { IRootState } from '../../../store';
 import EachPostGrid from '../../postsComponents/eachPostGrid'
-
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import { PostDetail } from '../../../util/interfaces/postDetailInterface';
