@@ -3,7 +3,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 
-Go to [Product Hunt Api](https://api.producthunt.com/v2/oauth/applications) to a Token (You need to register an account first, if you haven't)
+Go to [Product Hunt Api](https://api.producthunt.com/v2/oauth/applications) to get a Token (You need to register an account first, if you haven't)
 
 Then create an .env.local on the root of the project and put the token into .env.local.
 
