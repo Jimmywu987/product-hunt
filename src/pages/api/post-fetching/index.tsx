@@ -85,7 +85,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       }catch(err){
 
         //when error occurred, then mock data will be in used
-        const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+        const allTopicsWithinArray:string[][] = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
         allTopicsWithinArray.map((each)=>{
           each.map(topic=>{
             if(!topics.includes(topic)){
