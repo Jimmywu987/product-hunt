@@ -21,12 +21,12 @@ const PostDetailPage = ({post}:{post:PostDetail}) => {
     const posts = useSelector((state: IRootState) => state.storedPostsReducer.posts)
 
 
-    useEffect(()=>{
-        // in the case of directly get to this [slug] page through browser url, then a new array of posts need to be fetched again for listing out a related posts on right hand side
-        if(posts.length === 0){
-            fetchPostsFromProductHunt()
-        }
-    },[])
+    // useEffect(()=>{
+    //     // in the case of directly get to this [slug] page through browser url, then a new array of posts need to be fetched again for listing out a related posts on right hand side
+    //     if(posts.length === 0){
+    //         fetchPostsFromProductHunt()
+    //     }
+    // },[])
 
     useEffect(()=>{
       // set the loading state back to false when finished the data fetching
@@ -81,7 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({params})=>{
           "Host": "api.producthunt.com",
           "Accept": "application/json",
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_PH_ACCESS_TOKEN}`
+          "Authorization": `Bearer ${process.env.PH_ACCESS_TOKEN}`
         }
     });
     try{

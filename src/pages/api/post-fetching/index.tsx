@@ -15,7 +15,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
               "Host": "api.producthunt.com",
               "Accept": "application/json",
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${process.env.NEXT_PUBLIC_PH_ACCESS_TOKEN}`
+              "Authorization": `Bearer ${process.env.PH_ACCESS_TOKEN}`
             }
           });
         const topics: string[] = []
@@ -85,7 +85,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
       }catch(err){
 
         //when error occurred, then mock data will be in used
-        const allTopicsWithinArray = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
+        const allTopicsWithinArray:string[][] = mockData.map((eachNode)=> eachNode.node.topics.edges.map((topic)=>topic.node.name))
         allTopicsWithinArray.map((each)=>{
           each.map(topic=>{
             if(!topics.includes(topic)){
