@@ -5,7 +5,7 @@ const nextTranslate = require('next-translate')
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    NEXT_PUBLIC_PH_ACCESS_TOKEN: process.env.NEXT_PUBLIC_PH_ACCESS_TOKEN,
+    PH_ACCESS_TOKEN: process.env.PH_ACCESS_TOKEN,
   },
   webpackDevMiddleware: (config) => {
     return config;

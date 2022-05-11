@@ -81,7 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({params})=>{
           "Host": "api.producthunt.com",
           "Accept": "application/json",
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_PH_ACCESS_TOKEN}`
+          "Authorization": `Bearer ${process.env.PH_ACCESS_TOKEN}`
         }
     });
     try{
