@@ -1,18 +1,23 @@
 {
   "localeDetection": false,
-  "locales": ["zh-HK", "en"],
+  "locales": [
+    "zh-HK",
+    "en"
+  ],
   "defaultLocale": "en",
   "domains": [
     {
-        "domain": "http://localhost:3000/zh-HK",
-        "defaultLocale": "zh-HK"
+      "domain": "product-hunt-nine.vercel.app",
+      "defaultLocale": "zh-HK"
     },
     {
-      "domain": "http://localhost:3000/",
+      "domain": "product-hunt-nine.vercel.app/en",
       "defaultLocale": "en"
     }
   ],
   "pages": {
-    "*": ["common"]
+    "*": [
+      "common"
+    ]
   }
 }

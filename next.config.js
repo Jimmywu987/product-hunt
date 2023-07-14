@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const nextTranslate = require('next-translate')
-
+const nextTranslate = require("next-translate-plugin");
 const nextConfig = {
   reactStrictMode: true,
   env: {
@@ -11,8 +10,8 @@ const nextConfig = {
     return config;
   },
   images: {
-    domains:["ph-files.imgix.net", "ph-avatars.imgix.net"]
-  }
-}
+    domains: ["ph-files.imgix.net", "ph-avatars.imgix.net"],
+  },
+};
 
-module.exports = nextTranslate(nextConfig)
+module.exports = nextTranslate(nextConfig);

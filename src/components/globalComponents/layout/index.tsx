@@ -4,14 +4,14 @@ import Footer from "../footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
-const Layout = ({ children,posts, topics })=>{
+const Layout = ({ children, posts, topics }) => {
   const dispatch = useDispatch();
-  useEffect(()=>{
+  useEffect(() => {
     dispatch({
       type: "@@STORED_POSTS",
-      payload: {posts,topics},
+      payload: { posts, topics },
     });
-  },[])
+  }, []);
   return (
     <>
       <HeadHTML />
@@ -20,10 +20,6 @@ const Layout = ({ children,posts, topics })=>{
       <Footer />
     </>
   );
-}
+};
 
 export default Layout;
-
-
-
-
