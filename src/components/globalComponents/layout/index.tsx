@@ -13,12 +13,14 @@ const Layout = ({ children, posts, topics }) => {
     });
   }, []);
   return (
-    <>
-      <HeadHTML />
-      <Header />
-      <main className="min-h-[80vh]">{children}</main>
+    <div className="min-h-screen flex flex-col justify-between">
+      <>
+        <HeadHTML />
+        <Header />
+        <main>{children}</main>
+      </>
       <Footer />
-    </>
+    </div>
   );
 };
 
